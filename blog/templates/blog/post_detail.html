@@ -8,7 +8,14 @@
 <body>
     <h1>{{ post.title }}</h1>
     <p>{{ post.content }}</p>
+    
+    <!-- Edit Post Link -->
     <a href="{% url 'edit_post' post_id=post.id %}">Edit Post</a>
+    
+    <!-- Delete Post Link -->
+    <a href="{% url 'delete_post' post_id=post.id %}">Delete Post</a>
+
+    <!-- Back to List Link -->
     <a href="{% url 'post_list' %}">Back to List</a>
 </body>
 </html>
