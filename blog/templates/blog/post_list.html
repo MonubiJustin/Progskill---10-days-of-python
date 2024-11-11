@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Blog</title>
+    <title>Post List</title>
 </head>
 <body>
-    <h1>Blog Posts</h1>
-    {% for post in posts %}
-        <div style="border-bottom: 1px solid #ccc; padding: 10px 0;">
-            <h2><a href="{% url 'post_detail' post.id %}">{{ post.title }}</a></h2>
-            <p><strong>By:</strong> {{ post.author }} | <strong>Published on:</strong> {{ post.created_at }}</p>
-            <p>{{ post.content|truncatewords:30 }}</p>
-            <a href="{% url 'post_detail' post.id %}">Read More</a> <!-- Link to each post's detail page -->
-        </div>
-    {% endfor %}
+    <h1>All Posts</h1>
+    <ul>
+        {% for post in posts %}
+            <li>
+                <a href="{% url 'post_detail' post_id=post.id %}">{{ post.title }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'create_post' %}">Create New Post</a>
 </body>
 </html>
