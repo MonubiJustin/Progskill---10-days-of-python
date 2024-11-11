@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ post.title }}</title>
+</head>
+<body>
+    <h1>{{ post.title }}</h1>
+    <p><strong>Published on:</strong> {{ post.created_at }}</p>
+    <div>
+        {{ post.content|safe }}
+    </div>
+    <a href="{% url 'post_list' %}">Back to Home</a>
+</body>
+</html>

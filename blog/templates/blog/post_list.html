@@ -9,10 +9,10 @@
     <h1>Blog Posts</h1>
     {% for post in posts %}
         <div style="border-bottom: 1px solid #ccc; padding: 10px 0;">
-            <h2>{{ post.title }}</h2>
+            <h2><a href="{% url 'post_detail' post.id %}">{{ post.title }}</a></h2>
             <p><strong>By:</strong> {{ post.author }} | <strong>Published on:</strong> {{ post.created_at }}</p>
             <p>{{ post.content|truncatewords:30 }}</p>
-            <a href="#">Read More</a> <!-- Link for each post, can be implemented later -->
+            <a href="{% url 'post_detail' post.id %}">Read More</a> <!-- Link to each post's detail page -->
         </div>
     {% endfor %}
 </body>
