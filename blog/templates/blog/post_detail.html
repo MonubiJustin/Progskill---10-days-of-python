@@ -9,13 +9,34 @@
     <h1>{{ post.title }}</h1>
     <p>{{ post.content }}</p>
     
-    <!-- Edit Post Link -->
+    <!-- Edit and Delete Links -->
     <a href="{% url 'edit_post' post_id=post.id %}">Edit Post</a>
-    
-    <!-- Delete Post Link -->
     <a href="{% url 'delete_post' post_id=post.id %}">Delete Post</a>
-
-    <!-- Back to List Link -->
     <a href="{% url 'post_list' %}">Back to List</a>
+
+    <!-- Display Comments -->
+    <h2>Comments</h2>
+    <ul>
+        {% for comment in comments %}
+            <li>
+                <strong>{{ comment.author }}:</strong> {{ comment.text }} <br>
+                <small>Posted on {{ comment.created_at }}</small>
+            </li>
+        {% empty %}
+            <li>No comments yet.</li>
+        {% endfor %}
+    </ul>
+
+    <!-- Comment Form -->
+    {% if user.is_authenticated %}
+        <h2>Leave a Comment</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Submit</button>
+        </form>
+    {% else %}
+        <p><a href="{% url 'login' %}">Log in</a> to leave a comment.</p>
+    {% endif %}
 </body>
 </html>
